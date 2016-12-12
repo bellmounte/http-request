@@ -1,4 +1,5 @@
 const http = require('http');
+const https = require('https');
 
 const httpRequest = (options, data) => {
 	return new Promise((resolve, reject) => {
@@ -12,6 +13,13 @@ const httpRequest = (options, data) => {
 			response.on('data', (chunk) => body.push(chunk));
 			response.on('end', () => resolve(body.join('')));
 		});
+
+		let request;
+        if (options.protocol === 'https:') {
+            request = https.request(options, callback);
+        } else {
+            request = http.request(options, callback);
+        }
 
 		request.on('error', (error) => reject(error));
 		if (data) {
