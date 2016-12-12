@@ -2,6 +2,12 @@
 
 A Promise wrapper around the native node `http.request` and `https.request` methods.
 
+### Installation
+
+```bash
+npm install bellmounte-http-request
+```
+
 ### Usage
 
 ```javascript
